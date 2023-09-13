@@ -81,14 +81,24 @@ function clearLines() {
     if (gameBoard[y].every((value) => value === 1)) {
       gameBoard.splice(y, 1);
       gameBoard.unshift(Array(gameBoard[0].length).fill(0));
-      y++; // Recheck the current row since everything shifted down
+      y++;
     }
+  }
+}
+function pauseGame() {
+  if (isPaused) {
+    startDescent();
+    isPaused = false;
+  } else {
+    clearInterval(descentInterval);
+    isPaused = true;
   }
 }
 
 function updateGame() {
-  moveDown();
-  // Further updates can be added here in the future
+  if (!isPaused) {
+    moveDown();
+  }
 }
 
-setInterval(updateGame, 1000); // Move the current tetromino down every second
+startDescent();
