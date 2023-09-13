@@ -1,7 +1,10 @@
 const gameBoard = Array(20)
   .fill(null)
   .map(() => Array(10).fill(0));
+
 let currentTetromino = getRandomTetromino();
+let descentInterval;
+let isPaused = false; // Track if the game is paused or not
 
 function getRandomTetromino() {
   const tetrominoes = "IOTSZJL";
@@ -100,5 +103,21 @@ function updateGame() {
     moveDown();
   }
 }
+function render() {
+  const boardElement = document.getElementById("gameBoard"); // Assuming your game board has the id "gameBoard"
+  boardElement.innerHTML = ""; // Clear previous render
 
+  gameBoard.forEach((row) => {
+    const rowElement = document.createElement("div");
+    row.forEach((cell) => {
+      const cellElement = document.createElement("div");
+      cellElement.classList.add("cell");
+      if (cell === 1) {
+        cellElement.classList.add("filled"); // Assuming filled cells have the class "filled"
+      }
+      rowElement.appendChild(cellElement);
+    });
+    boardElement.appendChild(rowElement);
+  });
+}
 startDescent();
