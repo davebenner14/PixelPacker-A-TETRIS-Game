@@ -1,6 +1,6 @@
-// Declare these variables globally if they are being used in both main.js and control.js
 let isPaused = false;
 let gameInterval;
+let gameStarted = false;
 
 document.addEventListener("DOMContentLoaded", function () {
   console.log("PixelPacker is initialized!");
@@ -8,27 +8,49 @@ document.addEventListener("DOMContentLoaded", function () {
   // Initialize the game
   initGame();
 
-  // Start the game loop
-  startGameLoop();
-
   // Initialize controls
   initializeControls();
+
+  // Attach event listener to start and pause buttons
+  document.getElementById("startGame").addEventListener("click", startGame);
+  document.getElementById("pausePlay").addEventListener("click", togglePause);
 });
 
 function initGame() {
-  // Initialize the game state
-  isPaused = false;
+  isPaused = true;
+}
 
-  // Assuming you want to set up the game board and maybe draw the initial state:
-  // draw(gameBoard);
+function startGame() {
+  console.log("startGame function called");
+
+  if (!gameStarted) {
+    isPaused = false;
+    startGameLoop();
+    gameStarted = true;
+    document.getElementById("pausePlay").innerText = "Pause";
+  }
 }
 
 function startGameLoop() {
+  console.log("startGameLoop function called"); // New console log for debugging
   gameInterval = setInterval(function () {
     if (!isPaused) {
       updateGame();
     }
   }, 1000);
+}
+
+function togglePause() {
+  if (!gameStarted) return;
+
+  isPaused = !isPaused;
+  if (isPaused) {
+    clearInterval(gameInterval);
+    document.getElementById("pausePlay").innerText = "Resume";
+  } else {
+    startGameLoop();
+    document.getElementById("pausePlay").innerText = "Pause";
+  }
 }
 
 function initializeControls() {

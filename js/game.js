@@ -3,13 +3,12 @@ const gameBoard = Array(20)
   .map(() => Array(10).fill(0));
 
 let currentTetromino = getRandomTetromino();
-let descentInterval;
-let isPaused = false; // Track if the game is paused or not
 
 function getRandomTetromino() {
   const tetrominoes = "IOTSZJL";
   const randomTetromino =
     TETROMINOES[tetrominoes[Math.floor(Math.random() * tetrominoes.length)]];
+
   return {
     ...randomTetromino,
     posX:
@@ -23,20 +22,32 @@ function placeTetromino() {
   for (let y = 0; y < currentTetromino.shape.length; y++) {
     for (let x = 0; x < currentTetromino.shape[y].length; x++) {
       if (currentTetromino.shape[y][x]) {
-        gameBoard[y + currentTetromino.posY][x + currentTetromino.posX] = 1;
+        gameBoard[y + currentTetromino.posY][x + currentTetromino.posX] =
+          currentTetromino.shape[y][x];
       }
     }
   }
-  clearLines(); // Check for and clear any filled lines
-  currentTetromino = getRandomTetromino(); // Spawn a new tetromino
+  clearLines();
+  currentTetromino = getRandomTetromino();
+}
+
+function hasCollision() {
+  const collision = checkCollision(currentTetromino, gameBoard);
+  if (collision) {
+    console.log("Collision detected");
+  }
+  return collision;
 }
 
 function moveDown() {
+  console.log("moveDown function called");
   currentTetromino.posY++;
   if (hasCollision()) {
+    console.log("Collision occurred on moveDown");
     currentTetromino.posY--;
     placeTetromino();
   }
+  console.log("Current Tetromino Y position:", currentTetromino.posY);
 }
 
 function moveRight() {
@@ -60,12 +71,8 @@ function rotateTetromino() {
     .reverse();
 
   if (hasCollision()) {
-    currentTetromino.shape = originalShape; // Revert if rotation causes a collision
+    currentTetromino.shape = originalShape;
   }
-}
-
-function hasCollision() {
-  return checkCollision(currentTetromino, gameBoard);
 }
 
 function clearLines() {
@@ -77,6 +84,7 @@ function clearLines() {
     }
   }
 }
+
 function pauseGame() {
   if (isPaused) {
     startDescent();
@@ -88,28 +96,43 @@ function pauseGame() {
 }
 
 function updateGame() {
-  if (!isPaused) {
-    moveDown();
-  }
-  render(); // Call render after updating the game
+  console.log("updateGame function called");
+  moveDown();
+  render();
 }
 
 function render() {
-  const boardElement = document.getElementById("gameBoard"); // Assuming your game board has the id "gameBoard"
-  boardElement.innerHTML = ""; // Clear previous render
+  const boardElement = document.getElementById("gameBoard");
+  boardElement.innerHTML = "";
 
-  gameBoard.forEach((row) => {
+  // Rendering game board with current Tetromino
+  for (let y = 0; y < gameBoard.length; y++) {
     const rowElement = document.createElement("div");
-    row.forEach((cell) => {
+    for (let x = 0; x < gameBoard[y].length; x++) {
       const cellElement = document.createElement("div");
       cellElement.classList.add("cell");
-      if (cell === 1) {
-        cellElement.classList.add("filled"); // Assuming filled cells have the class "filled"
+
+      // Check if cell belongs to Tetromino or game board
+      if (
+        y >= currentTetromino.posY &&
+        y < currentTetromino.posY + currentTetromino.shape.length &&
+        x >= currentTetromino.posX &&
+        x < currentTetromino.posX + currentTetromino.shape[0].length &&
+        currentTetromino.shape[y - currentTetromino.posY][
+          x - currentTetromino.posX
+        ]
+      ) {
+        cellElement.classList.add("tetromino-cell");
+      } else if (gameBoard[y][x] !== 0) {
+        cellElement.classList.add(gameBoard[y][x]);
       }
+
       rowElement.appendChild(cellElement);
-    });
+    }
     boardElement.appendChild(rowElement);
-  });
+  }
 }
 
-startDescent();
+// Place a block in the middle of the game board and render it
+gameBoard[5][5] = 1;
+render();

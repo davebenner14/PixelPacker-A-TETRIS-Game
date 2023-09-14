@@ -20,6 +20,8 @@
   width: 300px;
   height: 600px;
   border: 3px solid #000;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 #nextPiecePreview {
@@ -37,4 +39,38 @@ button {
   padding: 0.5em 1em;
   margin-right: 0.5em;
   cursor: pointer;
+}
+
+.cell {
+  width: calc(300px / 10);
+  height: calc(600px / 20);
+  border: 1px solid #ddd;
+}
+
+.cyan {
+  background-color: cyan;
+}
+
+.yellow {
+  background-color: yellow;
+}
+
+.purple {
+  background-color: purple;
+}
+
+.green {
+  background-color: green;
+}
+
+.red {
+  background-color: red;
+}
+
+.blue {
+  background-color: blue;
+}
+
+.orange {
+  background-color: orange;
 }
