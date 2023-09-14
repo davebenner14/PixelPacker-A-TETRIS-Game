@@ -3,13 +3,36 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PixelPacker - Tetris Game</title>
+    <title>PixelPacker - A Tetris Game</title>
     <link rel="stylesheet" href="css/main.css" />
     <link rel="stylesheet" href="css/game.css" />
     <link rel="stylesheet" href="css/controls.css" />
   </head>
   <body>
-    <div id="gameBoard"></div>
+    <div class="game-container">
+      <!-- Game Information Display -->
+      <div class="info-section">
+        <h2>PixelPacker - A Tetris Game</h2>
+        <div class="score-display">
+          <span>Score:</span>
+          <span id="score">0</span>
+        </div>
+        <div class="level-display">
+          <span>Level:</span>
+          <span id="level">1</span>
+        </div>
+        <div class="next-piece">
+          <h4>Next Piece:</h4>
+          <div id="nextPiecePreview"></div>
+        </div>
+        <div class="game-buttons">
+          <button id="startGame">Start Game</button>
+          <button id="pausePlay">Pause</button>
+        </div>
+      </div>
+      <!-- Game Board -->
+      <div id="gameBoard"></div>
+    </div>
 
     <script src="js/main.js"></script>
     <script src="js/utils.js"></script>

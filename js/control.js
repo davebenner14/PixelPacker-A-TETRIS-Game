@@ -7,7 +7,7 @@ document.addEventListener("keydown", function (event) {
       if (!isPaused) moveLeft();
       break;
     case "ArrowDown":
-      if (!isPaused) speedUpDescent();
+      if (!isPaused) moveDown(); // Renamed from speedUpDescent() to moveDown() to match the logic from the provided code.
       break;
     case "ArrowUp":
     case "Space":
@@ -15,7 +15,16 @@ document.addEventListener("keydown", function (event) {
       break;
     case "p":
     case "P":
-      pauseGame();
+      isPaused = !isPaused; // Toggle the game pause state
+      if (isPaused) {
+        clearInterval(gameInterval);
+      } else {
+        gameInterval = setInterval(function () {
+          if (!isPaused) {
+            updateGame();
+          }
+        }, 1000);
+      }
       break;
     // If you wish to add more controls in the future,
     // you can add more cases here.

@@ -65,18 +65,7 @@ function rotateTetromino() {
 }
 
 function hasCollision() {
-  for (let y = 0; y < currentTetromino.shape.length; y++) {
-    for (let x = 0; x < currentTetromino.shape[y].length; x++) {
-      if (
-        currentTetromino.shape[y][x] &&
-        (gameBoard[y + currentTetromino.posY] &&
-          gameBoard[y + currentTetromino.posY][x + currentTetromino.posX]) !== 0
-      ) {
-        return true;
-      }
-    }
-  }
-  return false;
+  return checkCollision(currentTetromino, gameBoard);
 }
 
 function clearLines() {
@@ -102,7 +91,9 @@ function updateGame() {
   if (!isPaused) {
     moveDown();
   }
+  render(); // Call render after updating the game
 }
+
 function render() {
   const boardElement = document.getElementById("gameBoard"); // Assuming your game board has the id "gameBoard"
   boardElement.innerHTML = ""; // Clear previous render
@@ -120,4 +111,5 @@ function render() {
     boardElement.appendChild(rowElement);
   });
 }
+
 startDescent();

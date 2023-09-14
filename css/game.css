@@ -1,0 +1,40 @@
+.game-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.info-section {
+  margin-right: 2em;
+  text-align: center;
+}
+
+.score-display,
+.level-display {
+  margin: 1em 0;
+  font-size: 1.2em;
+}
+
+#gameBoard {
+  width: 300px;
+  height: 600px;
+  border: 3px solid #000;
+}
+
+#nextPiecePreview {
+  width: 100px;
+  height: 100px;
+  border: 1px solid #000;
+  margin-top: 1em;
+}
+
+.game-buttons {
+  margin-top: 1.5em;
+}
+
+button {
+  padding: 0.5em 1em;
+  margin-right: 0.5em;
+  cursor: pointer;
+}
