@@ -100,11 +100,11 @@ function updateGame() {
   moveDown();
   render();
 }
-
 function render() {
   const boardElement = document.getElementById("gameBoard");
   boardElement.innerHTML = "";
 
+  // Rendering game board with current Tetromino
   for (let y = 0; y < gameBoard.length; y++) {
     const rowElement = document.createElement("div");
     for (let x = 0; x < gameBoard[y].length; x++) {
@@ -120,7 +120,11 @@ function render() {
           x - currentTetromino.posX
         ]
       ) {
-        cellElement.classList.add(currentTetromino.color);
+        cellElement.classList.add(
+          currentTetromino.shape[y - currentTetromino.posY][
+            x - currentTetromino.posX
+          ]
+        );
       } else if (gameBoard[y][x] !== 0) {
         cellElement.classList.add(gameBoard[y][x]);
       }

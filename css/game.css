@@ -1,3 +1,9 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .game-container {
   display: flex;
   justify-content: center;
@@ -16,12 +22,21 @@
   font-size: 1.2em;
 }
 
+.gameBoard-container {
+  width: 306px;
+  height: 606px;
+  border: 3px solid #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 #gameBoard {
   width: 300px;
   height: 600px;
-  border: 3px solid #000;
   display: flex;
   flex-wrap: wrap;
+  align-content: flex-start;
 }
 
 #nextPiecePreview {
