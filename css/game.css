@@ -32,6 +32,7 @@
 }
 
 #gameBoard {
+  background-color: rgb(2, 2, 2);
   width: 300px;
   height: 600px;
   display: flex;
