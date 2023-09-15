@@ -113,14 +113,13 @@ function render() {
 
       if (
         x >= currentTetromino.posX &&
-        x <
-          currentTetromino.posX +
+        x < currentTetromino.posX + currentTetromino.shape.length &&
+        y >= currentTetromino.posY &&
+        y <
+          currentTetromino.posY +
             (currentTetromino.shape[0]
               ? currentTetromino.shape[0].length
               : 0) &&
-        y >= currentTetromino.posY &&
-        y < currentTetromino.posY + currentTetromino.shape.length &&
-        currentTetromino.shape[x - currentTetromino.posX] &&
         currentTetromino.shape[x - currentTetromino.posX][
           y - currentTetromino.posY
         ]
