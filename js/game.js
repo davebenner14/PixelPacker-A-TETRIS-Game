@@ -39,7 +39,6 @@ function hasCollision() {
   }
   return collision;
 }
-
 function moveDown() {
   console.log("moveDown function called");
   currentTetromino.posY++;
@@ -105,20 +104,25 @@ function updateGame() {
 function render() {
   boardElement.innerHTML = "";
 
-  for (let y = 0; y < gameBoard.length; y++) {
-    const rowElement = document.createElement("div");
+  for (let x = 0; x < gameBoard[0].length; x++) {
+    const columnElement = document.createElement("div");
 
-    for (let x = 0; x < gameBoard[y].length; x++) {
+    for (let y = 0; y < gameBoard.length; y++) {
       const cellElement = document.createElement("div");
       cellElement.classList.add("cell");
 
       if (
+        x >= currentTetromino.posX &&
+        x <
+          currentTetromino.posX +
+            (currentTetromino.shape[0]
+              ? currentTetromino.shape[0].length
+              : 0) &&
         y >= currentTetromino.posY &&
         y < currentTetromino.posY + currentTetromino.shape.length &&
-        x >= currentTetromino.posX &&
-        x < currentTetromino.posX + currentTetromino.shape[0].length &&
-        currentTetromino.shape[y - currentTetromino.posY][
-          x - currentTetromino.posX
+        currentTetromino.shape[x - currentTetromino.posX] &&
+        currentTetromino.shape[x - currentTetromino.posX][
+          y - currentTetromino.posY
         ]
       ) {
         cellElement.classList.add(currentTetromino.color);
@@ -126,10 +130,10 @@ function render() {
         cellElement.classList.add(gameBoard[y][x]);
       }
 
-      rowElement.appendChild(cellElement);
+      columnElement.appendChild(cellElement);
     }
 
-    boardElement.appendChild(rowElement);
+    boardElement.appendChild(columnElement);
   }
 }
 
