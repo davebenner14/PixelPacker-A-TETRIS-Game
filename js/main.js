@@ -55,6 +55,4 @@ function togglePause() {
   }
 }
 
-function initializeControls() {
-  // All controls are now in control.js.
-}
+function initializeControls() {}
