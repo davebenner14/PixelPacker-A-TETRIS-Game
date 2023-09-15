@@ -61,32 +61,40 @@ button {
   width: calc(300px / 10);
   height: calc(600px / 20);
   border: 1px solid #ddd;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .cyan {
-  background-color: cyan;
+  background: linear-gradient(45deg, cyan, lightcyan);
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .yellow {
-  background-color: yellow;
+  background: linear-gradient(45deg, yellow, lightyellow);
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .purple {
-  background-color: purple;
+  background: linear-gradient(45deg, purple, mediumpurple);
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .green {
-  background-color: green;
+  background: linear-gradient(45deg, green, lightgreen);
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .red {
-  background-color: red;
+  background: linear-gradient(45deg, red, tomato);
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .blue {
-  background-color: blue;
+  background: linear-gradient(45deg, blue, lightblue);
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .orange {
-  background-color: orange;
+  background: linear-gradient(45deg, orange, moccasin);
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }

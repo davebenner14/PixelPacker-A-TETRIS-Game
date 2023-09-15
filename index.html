@@ -8,10 +8,10 @@
     <link rel="stylesheet" href="css/game.css" />
   </head>
   <body>
+    <h2 class="game-title">PixelPacker - A Tetris Game</h2>
     <div class="game-container">
-      <!-- Game Information Display -->
-      <div class="info-section">
-        <h2>PixelPacker - A Tetris Game</h2>
+      <div class="left-section">
+        <!-- Game Information Display -->
         <div class="score-display">
           <span>Score:</span>
           <span id="score">0</span>
@@ -20,18 +20,32 @@
           <span>Level:</span>
           <span id="level">1</span>
         </div>
-        <div class="next-piece">
-          <h4>Next Piece:</h4>
-          <div id="nextPiecePreview"></div>
-        </div>
         <div class="game-buttons">
           <button id="startGame">Start Game</button>
           <button id="pausePlay">Pause</button>
         </div>
       </div>
+
       <!-- Game Board -->
       <div class="gameBoard-container">
         <div id="gameBoard"></div>
+      </div>
+
+      <div class="right-section">
+        <div class="next-piece">
+          <h4>Next Piece:</h4>
+          <div id="nextPiecePreview"></div>
+        </div>
+        <div class="controls">
+          <h4>Controls:</h4>
+          <ul>
+            <li>Left Arrow: Move Left</li>
+            <li>Right Arrow: Move Right</li>
+            <li>Down Arrow: Move Down</li>
+            <li>Space: Rotate</li>
+            <li>P: Pause/Play</li>
+          </ul>
+        </div>
       </div>
     </div>
 

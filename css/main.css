@@ -4,3 +4,31 @@ body {
   background-size: cover;
   background-position: center center;
 }
+
+.game-title {
+  text-align: center;
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+.game-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100vh;
+}
+
+.left-section,
+.right-section {
+  width: 20%;
+}
+
+.controls h4,
+.next-piece h4 {
+  margin-top: 20px;
+}
+
+.controls ul {
+  list-style-type: none;
+  padding-left: 0;
+}
