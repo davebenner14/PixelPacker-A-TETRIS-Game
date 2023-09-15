@@ -5,6 +5,8 @@ let gameStarted = false;
 document.addEventListener("DOMContentLoaded", function () {
   console.log("PixelPacker is initialized!");
 
+  boardElement = document.getElementById("gameBoard"); // Replace 'gameBoard' with the actual ID of your game board element if it's different.
+
   // Initialize the game
   initGame();
 
@@ -32,7 +34,7 @@ function startGame() {
 }
 
 function startGameLoop() {
-  console.log("startGameLoop function called"); // New console log for debugging
+  console.log("startGameLoop function called");
   gameInterval = setInterval(function () {
     if (!isPaused) {
       updateGame();
