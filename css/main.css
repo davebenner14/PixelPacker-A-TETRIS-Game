@@ -54,3 +54,25 @@ body {
   background: transparent;
   box-shadow: none;
 }
+.game-title {
+  margin-top: 40px;
+  margin-bottom: 30px;
+  font-family: "Press Start 2P", cursive;
+  font-size: 32px;
+  background: linear-gradient(
+    45deg,
+    red,
+    blue,
+    green,
+    yellow,
+    cyan,
+    purple,
+    orange
+  );
+  -webkit-background-clip: text;
+  color: transparent;
+  text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.7), 5px 5px 10px rgba(0, 0, 0, 0.5);
+  letter-spacing: 2px;
+  text-align: center;
+  margin-bottom: 20px;
+}
