@@ -76,3 +76,51 @@ body {
   text-align: center;
   margin-bottom: 20px;
 }
+
+button {
+  font-family: "Press Start 2P", cursive;
+  font-size: 14px;
+  background: linear-gradient(
+    45deg,
+    #ff9999,
+    #ffcc99,
+    #ffff99,
+    #ccff99,
+    #99ff99,
+    #99ffcc,
+    #99ffff,
+    #cc99ff
+  );
+  border: 3px solid #000;
+  padding: 8px 12px;
+  text-align: center;
+  cursor: pointer;
+  letter-spacing: 1px;
+  color: #000;
+  transition: transform 0.2s, background 0.2s;
+  box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.7);
+}
+
+button:hover {
+  transform: translateY(-3px);
+  background: linear-gradient(
+    45deg,
+    #ff6666,
+    #ff9933,
+    #ffff66,
+    #99ff66,
+    #66ff66,
+    #66ff99,
+    #66ffff,
+    #9933ff
+  );
+}
+
+button:active {
+  transform: translateY(0);
+  box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.7);
+}
+
+button + button {
+  margin-left: 10px;
+}
