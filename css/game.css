@@ -99,3 +99,33 @@ button {
   background: linear-gradient(45deg, orange, moccasin);
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
+.cell.ghost {
+  background: transparent;
+}
+
+.cell.ghost.cyan {
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2), inset 0 0 0 2px cyan; /* inset for inner border */
+}
+
+.cell.ghost.yellow {
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2), inset 0 0 0 2px yellow;
+}
+.cell.ghost.purple {
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2), inset 0 0 0 2px purple;
+}
+
+.cell.ghost.green {
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2), inset 0 0 0 2px green;
+}
+
+.cell.ghost.red {
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2), inset 0 0 0 2px red;
+}
+
+.cell.ghost.blue {
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2), inset 0 0 0 2px blue;
+}
+
+.cell.ghost.orange {
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2), inset 0 0 0 2px orange;
+}

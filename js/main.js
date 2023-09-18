@@ -52,6 +52,34 @@ function startGameLoop() {
   }, 800);
 }
 
+function getGhostPiecePosition() {
+  let ghostPosY = currentTetromino.posY;
+
+  while (true) {
+    ghostPosY++;
+    if (checkCollisionWithBoard(currentTetromino, ghostPosY)) {
+      ghostPosY--;
+      break;
+    }
+  }
+
+  return ghostPosY;
+}
+
+function checkCollisionWithBoard(tetromino, posY) {
+  for (let y = 0; y < tetromino.shape.length; y++) {
+    for (let x = 0; x < tetromino.shape[y].length; x++) {
+      if (
+        tetromino.shape[y][x] &&
+        (gameBoard[y + posY] && gameBoard[y + posY][x + tetromino.posX]) !== 0
+      ) {
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
 function togglePause() {
   if (!gameStarted) return;
 

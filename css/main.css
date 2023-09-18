@@ -50,3 +50,7 @@ body {
   background-color: white;
   animation: blurExpand 200ms forwards;
 }
+.ghost {
+  background: transparent;
+  box-shadow: none;
+}

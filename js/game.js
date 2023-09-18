@@ -130,10 +130,18 @@ function placeTetromino() {
 }
 
 function clearLines() {
+  let rowsToRemove = [];
+
   for (let y = 0; y < gameBoard.length; y++) {
     if (gameBoard[y].every((cell) => cell !== 0)) {
-      flashAndRemoveRow(y);
-      return;
+      rowsToRemove.push(y);
+    }
+  }
+
+  for (let i = 0; i < rowsToRemove.length; i++) {
+    flashAndRemoveRow(rowsToRemove[i]);
+    for (let j = i + 1; j < rowsToRemove.length; j++) {
+      rowsToRemove[j]--;
     }
   }
 }
@@ -169,6 +177,8 @@ function updateGame() {
 function render() {
   boardElement.innerHTML = "";
 
+  const ghostPosY = getGhostPiecePosition();
+
   for (let x = 0; x < gameBoard[0].length; x++) {
     const columnElement = document.createElement("div");
 
@@ -186,6 +196,15 @@ function render() {
         ]
       ) {
         cellElement.classList.add(currentTetromino.color);
+      } else if (
+        x >= currentTetromino.posX &&
+        x < currentTetromino.posX + currentTetromino.shape[0].length &&
+        y >= ghostPosY &&
+        y < ghostPosY + currentTetromino.shape.length &&
+        currentTetromino.shape[y - ghostPosY][x - currentTetromino.posX]
+      ) {
+        cellElement.classList.add(currentTetromino.color);
+        cellElement.classList.add("ghost"); // you will need a .ghost CSS class to make it look fainter
       } else if (gameBoard[y][x] !== 0) {
         cellElement.classList.add(gameBoard[y][x]);
       }
