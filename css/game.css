@@ -62,6 +62,7 @@ button {
   height: calc(600px / 20);
   border: 1px solid #ddd;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  transition: top 0.8s ease;
 }
 
 .cyan {

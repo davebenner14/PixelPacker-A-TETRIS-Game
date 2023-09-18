@@ -9,7 +9,8 @@ document.addEventListener("keydown", function (event) {
     case "ArrowDown":
       if (!isPaused) moveDown();
       break;
-    case "Space":
+    case "z":
+    case "Z":
       if (!isPaused) rotateTetromino();
       break;
     case "p":

@@ -5,7 +5,7 @@ let gameStarted = false;
 document.addEventListener("DOMContentLoaded", function () {
   console.log("PixelPacker is initialized!");
 
-  boardElement = document.getElementById("gameBoard"); // Replace 'gameBoard' with the actual ID of your game board element if it's different.
+  boardElement = document.getElementById("gameBoard");
 
   // Initialize the game
   initGame();
@@ -13,8 +13,18 @@ document.addEventListener("DOMContentLoaded", function () {
   // Initialize controls
   initializeControls();
 
-  // Attach event listener to start and pause buttons
+  // Prevent spacebar default behavior when the startGame button is in focus
+  document
+    .getElementById("startGame")
+    .addEventListener("keydown", function (event) {
+      if (event.key === "Space") {
+        event.preventDefault();
+      }
+    });
+
+  // Add back the click event listener for the startGame function
   document.getElementById("startGame").addEventListener("click", startGame);
+
   document.getElementById("pausePlay").addEventListener("click", togglePause);
 });
 
@@ -39,7 +49,7 @@ function startGameLoop() {
     if (!isPaused) {
       updateGame();
     }
-  }, 1000);
+  }, 800);
 }
 
 function togglePause() {
