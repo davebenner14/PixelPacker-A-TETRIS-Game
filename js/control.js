@@ -28,3 +28,12 @@ document.addEventListener("keydown", function (event) {
       break;
   }
 });
+document.querySelectorAll(".key").forEach((button) => {
+  button.addEventListener("click", function (e) {
+    const key = this.dataset.key;
+    const event = new KeyboardEvent("keydown", {
+      key: key,
+    });
+    document.dispatchEvent(event);
+  });
+});
