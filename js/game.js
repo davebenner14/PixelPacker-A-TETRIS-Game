@@ -132,12 +132,23 @@ function placeTetromino() {
 function clearLines() {
   for (let y = 0; y < gameBoard.length; y++) {
     if (gameBoard[y].every((cell) => cell !== 0)) {
-      for (let upwardRow = y; upwardRow > 0; upwardRow--) {
-        gameBoard[upwardRow] = gameBoard[upwardRow - 1].slice();
-      }
-      gameBoard[0] = Array(10).fill(0);
+      flashAndRemoveRow(y);
+      return;
     }
   }
+}
+
+function flashAndRemoveRow(rowIndex) {
+  for (let x = 0; x < gameBoard[rowIndex].length; x++) {
+    gameBoard[rowIndex][x] = "WHITE";
+  }
+  render();
+
+  setTimeout(function () {
+    gameBoard.splice(rowIndex, 1);
+    gameBoard.unshift(new Array(gameBoard[0].length).fill(0));
+    render();
+  }, 400);
 }
 
 function pauseGame() {

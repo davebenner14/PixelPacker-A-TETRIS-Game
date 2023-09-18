@@ -4,6 +4,20 @@ body {
   background-size: cover;
   background-position: center center;
 }
+@keyframes blurExpand {
+  0% {
+    filter: blur(0px);
+    transform: scale(1);
+  }
+  50% {
+    filter: blur(5px);
+    transform: scale(1.1);
+  }
+  100% {
+    filter: blur(0px);
+    transform: scale(1);
+  }
+}
 
 .game-title {
   text-align: center;
@@ -31,4 +45,8 @@ body {
 .controls ul {
   list-style-type: none;
   padding-left: 0;
+}
+.cell.WHITE {
+  background-color: white;
+  animation: blurExpand 200ms forwards;
 }
