@@ -3,7 +3,9 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
+  min-height: 101vh;
 }
+
 @keyframes blurExpand {
   0% {
     filter: blur(0px);
@@ -19,42 +21,6 @@ body {
   }
 }
 
-.game-title {
-  text-align: center;
-  font-size: 2em;
-  margin-bottom: 20px;
-  align-items: flex-start;
-}
-
-.game-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 100vh;
-}
-
-.left-section,
-.right-section {
-  width: 20%;
-}
-
-.controls h4,
-.next-piece h4 {
-  margin-top: 20px;
-}
-
-.controls ul {
-  list-style-type: none;
-  padding-left: 0;
-}
-.cell.WHITE {
-  background-color: white;
-  animation: blurExpand 200ms forwards;
-}
-.ghost {
-  background: transparent;
-  box-shadow: none;
-}
 .game-title {
   margin-top: 40px;
   margin-bottom: 30px;
@@ -75,7 +41,33 @@ body {
   text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.7), 5px 5px 10px rgba(0, 0, 0, 0.5);
   letter-spacing: 2px;
   text-align: center;
-  margin-bottom: 20px;
+}
+
+.game-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100vh;
+}
+
+.controls h4,
+.next-piece h4 {
+  margin-top: 20px;
+}
+
+.controls ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.cell.WHITE {
+  background-color: white;
+  animation: blurExpand 200ms forwards;
+}
+
+.ghost {
+  background: transparent;
+  box-shadow: none;
 }
 
 button {
@@ -137,15 +129,6 @@ button + button {
   border: 2px solid #fff;
   margin-bottom: 10px;
 }
-.info-buttons-container {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  width: 250px;
-  position: fixed;
-  top: 15%;
-  left: 8%;
-}
 
 .level-display,
 .score-display,
@@ -158,4 +141,54 @@ button + button {
 
 .game-buttons button {
   margin-right: 10px;
+}
+.next-piece,
+.controls {
+  font-family: "Press Start 2P", cursive;
+  font-size: 18px;
+  color: #fff;
+  text-shadow: 2px 2px #000;
+  padding: 8px 16px;
+  background: rgba(0, 0, 0, 0.6);
+  border: 2px solid #fff;
+  margin-bottom: 10px;
+}
+.next-piece h4 {
+  margin-bottom: 10px; /* or whatever space you'd like between the title and the grid */
+  font-size: 1.2em;
+  color: #fff;
+}
+
+.right-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 250px;
+  margin-top: -215px;
+}
+
+.left-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 250px;
+  margin-top: -443px;
+}
+
+#nextPiecePreview .cell {
+  width: 20px;
+  height: 20px;
+  margin: 0;
+}
+
+#nextPiecePreview {
+  grid-gap: 0px;
+  display: grid;
+  grid-template-columns: repeat(4, 20px);
+}
+.next-piece h4,
+.controls h4 {
+  margin: 0;
+  font-size: 1.2em;
+  color: #fff;
 }

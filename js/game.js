@@ -5,6 +5,7 @@ const gameBoard = Array(20)
 
 let currentTetromino = getRandomTetromino();
 let nextTetromino = getRandomTetromino();
+displayNextTetromino(nextTetromino);
 
 function moveDown() {
   console.log("moveDown function called");
@@ -13,14 +14,42 @@ function moveDown() {
     console.log("Collision occurred on moveDown");
     currentTetromino.posY--;
     placeTetromino();
+
     currentTetromino = nextTetromino;
+
     nextTetromino = getRandomTetromino();
+    displayNextTetromino(nextTetromino);
+
     if (hasCollision()) {
       console.log("Game Over");
       clearInterval(gameInterval);
     }
   }
   console.log("Current Tetromino Y position:", currentTetromino.posY);
+}
+
+function displayNextTetromino(tetromino) {
+  const nextPieceContainer = document.getElementById("nextPiecePreview");
+  const offsetX = 2 - Math.ceil(tetromino.shape[0].length / 2);
+  const offsetY = 2 - Math.ceil(tetromino.shape.length / 2);
+
+  nextPieceContainer.innerHTML = "";
+
+  for (let y = 0; y < 4; y++) {
+    const row = document.createElement("div");
+    for (let x = 0; x < 4; x++) {
+      const cell = document.createElement("div");
+      cell.classList.add("cell");
+      if (
+        tetromino.shape[y - offsetY] &&
+        tetromino.shape[y - offsetY][x - offsetX]
+      ) {
+        cell.classList.add(tetromino.color);
+      }
+      row.appendChild(cell);
+    }
+    nextPieceContainer.appendChild(row);
+  }
 }
 
 function getRandomTetromino() {
@@ -166,6 +195,24 @@ function pauseGame() {
   } else {
     clearInterval(descentInterval);
     isPaused = true;
+  }
+}
+
+function updateNextPiecePreview() {
+  let previewElement = document.getElementById("nextPiecePreview");
+  previewElement.innerHTML = "";
+
+  for (let y = 0; y < nextTetromino.shape.length; y++) {
+    let rowElement = document.createElement("div");
+    for (let x = 0; x < nextTetromino.shape[y].length; x++) {
+      let cellElement = document.createElement("div");
+      cellElement.classList.add("cell");
+      if (nextTetromino.shape[y][x]) {
+        cellElement.classList.add(nextTetromino.color);
+      }
+      rowElement.appendChild(cellElement);
+    }
+    previewElement.appendChild(rowElement);
   }
 }
 
