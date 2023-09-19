@@ -344,3 +344,17 @@ body {
   font-size: 2.8rem;
   color: #00477c;
 }
+.score-animation[data-points="20000"] {
+  font-size: 3.2rem;
+  color: #e63946;
+}
+
+.score-animation[data-points="30000"] {
+  font-size: 3.5rem;
+  color: #f1fa3c;
+}
+
+.score-animation[data-points="50000"] {
+  font-size: 4rem;
+  color: #01d28e;
+}

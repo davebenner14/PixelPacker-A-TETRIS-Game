@@ -193,8 +193,10 @@ function getPoints(level, linesCleared) {
     points = [300, 1200, 2700, 6000];
   } else if (level >= 6 && level <= 7) {
     points = [400, 1600, 3600, 8000];
-  } else {
+  } else if (level == 8 || level == 9) {
     points = [500, 2000, 4500, 10000];
+  } else if (level == 10) {
+    points = [10000, 20000, 30000, 50000];
   }
 
   return points[linesCleared - 1];
