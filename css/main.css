@@ -267,3 +267,80 @@ body {
   opacity: 1;
   animation: streakAcross 2s forwards;
 }
+@keyframes riseAnimation {
+  0% {
+    transform: translateY(2rem);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.score-animation {
+  animation: riseAnimation 1s forwards;
+  position: relative;
+  font-family: "Press Start 2P", cursive;
+  z-index: 2;
+}
+
+.score-animation[data-points="100"] {
+  font-size: 1rem;
+  color: #7b7b7b;
+}
+
+.score-animation[data-points="400"] {
+  font-size: 1.2rem;
+  color: #5a5a5a;
+}
+
+.score-animation[data-points="900"],
+.score-animation[data-points="2000"] {
+  font-size: 1.5rem;
+  color: #37a0db;
+}
+
+.score-animation[data-points="200"] {
+  font-size: 1.4rem;
+  color: #4b4b4b;
+}
+
+.score-animation[data-points="800"],
+.score-animation[data-points="4000"] {
+  font-size: 1.8rem;
+  color: #2a7bb7;
+}
+
+.score-animation[data-points="300"] {
+  font-size: 1.6rem;
+  color: #3b3b3b;
+}
+
+.score-animation[data-points="1200"],
+.score-animation[data-points="6000"] {
+  font-size: 2.2rem;
+  color: #1c6ca3;
+}
+
+.score-animation[data-points="400"] {
+  font-size: 1.8rem;
+  color: #2b2b2b;
+}
+
+.score-animation[data-points="1600"],
+.score-animation[data-points="8000"] {
+  font-size: 2.5rem;
+  color: #0d5a8f;
+}
+
+.score-animation[data-points="500"] {
+  font-size: 2rem;
+  color: #1b1b1b;
+}
+
+.score-animation[data-points="2000"],
+.score-animation[data-points="10000"] {
+  font-size: 2.8rem;
+  color: #00477c;
+}

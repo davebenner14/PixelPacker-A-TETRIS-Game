@@ -66,21 +66,21 @@ function getRandomTetromino() {
   };
 }
 
-function placeTetromino() {
-  for (let y = 0; y < currentTetromino.shape.length; y++) {
-    for (let x = 0; x < currentTetromino.shape[y].length; x++) {
-      if (currentTetromino.shape[y][x]) {
-        gameBoard[y + currentTetromino.posY][x + currentTetromino.posX] =
-          currentTetromino.color;
-      }
-    }
-  }
-  clearLines();
-  if (checkGameOver()) {
-    console.log("Game Over");
-    clearInterval(gameInterval);
-  }
-}
+// function placeTetromino() {
+//   for (let y = 0; y < currentTetromino.shape.length; y++) {
+//     for (let x = 0; x < currentTetromino.shape[y].length; x++) {
+//       if (currentTetromino.shape[y][x]) {
+//         gameBoard[y + currentTetromino.posY][x + currentTetromino.posX] =
+//           currentTetromino.color;
+//       }
+//     }
+//   }
+//   clearLines();
+//   if (checkGameOver()) {
+//     console.log("Game Over");
+//     clearInterval(gameInterval);
+//   }
+// }
 function checkGameOver() {
   for (let x = 0; x < gameBoard[0].length; x++) {
     if (gameBoard[0][x] !== 0) {
@@ -146,44 +146,105 @@ function placeTetromino() {
     clearInterval(gameInterval);
   }
 }
+
 let linesCleared = 0;
 let level = 1;
+let score = 0;
 
 function clearLines() {
-  let rowsToRemove = [];
+  const rowsToRemove = getRowsToRemove();
 
+  if (rowsToRemove.length > 0) {
+    updateLinesScoreAndLevel(rowsToRemove.length);
+    clearAndRenderRows(rowsToRemove);
+    shiftRowsAfterDelay(rowsToRemove);
+  }
+}
+
+function getRowsToRemove() {
+  let rowsToRemove = [];
   for (let y = 0; y < gameBoard.length; y++) {
     if (gameBoard[y].every((cell) => cell !== 0)) {
       rowsToRemove.push(y);
     }
   }
+  return rowsToRemove;
+}
 
-  linesCleared += rowsToRemove.length;
+function updateLinesScoreAndLevel(linesRemovedCount) {
+  linesCleared += linesRemovedCount;
 
-  if (linesCleared >= level) {
+  const pointsEarned = getPoints(level, linesRemovedCount);
+  updateScoreDisplay(pointsEarned);
+
+  if (score >= level * 100) {
     levelUp();
   }
+}
 
+function getPoints(level, linesCleared) {
+  let points;
+
+  if (level >= 0 && level <= 1) {
+    points = [100, 400, 900, 2000];
+  } else if (level >= 2 && level <= 3) {
+    points = [200, 800, 1800, 4000];
+  } else if (level >= 4 && level <= 5) {
+    points = [300, 1200, 2700, 6000];
+  } else if (level >= 6 && level <= 7) {
+    points = [400, 1600, 3600, 8000];
+  } else {
+    points = [500, 2000, 4500, 10000];
+  }
+
+  return points[linesCleared - 1];
+}
+
+function clearAndRenderRows(rowsToRemove) {
   rowsToRemove.forEach((rowIndex) => {
     for (let x = 0; x < gameBoard[rowIndex].length; x++) {
       gameBoard[rowIndex][x] = "WHITE";
     }
   });
-
   render();
+}
+function updateScoreDisplay(pointsEarned) {
+  const scoreElem = document.getElementById("score");
+  score += pointsEarned;
+  scoreElem.textContent = score;
 
-  setTimeout(function () {
+  const scoreAnimElem = document.createElement("span");
+  scoreAnimElem.textContent = `+${pointsEarned}`;
+  scoreAnimElem.className = "score-animation";
+  scoreAnimElem.setAttribute("data-points", pointsEarned);
+
+  scoreElem.parentElement.appendChild(scoreAnimElem);
+
+  setTimeout(() => {
+    scoreAnimElem.remove();
+  }, 1000);
+}
+
+function updateLinesAndLevel(linesRemovedCount) {
+  linesCleared += linesRemovedCount;
+  updateScoreDisplay();
+  if (linesCleared >= level) {
+    levelUp();
+  }
+}
+
+function shiftRowsAfterDelay(rowsToRemove) {
+  setTimeout(() => {
     for (let i = rowsToRemove.length - 1; i >= 0; i--) {
       gameBoard.splice(rowsToRemove[i], 1);
     }
-
     for (let i = 0; i < rowsToRemove.length; i++) {
       gameBoard.unshift(new Array(gameBoard[0].length).fill(0));
     }
-
     render();
   }, 400);
 }
+
 function levelUp() {
   console.log("levelUp called");
   level++;
