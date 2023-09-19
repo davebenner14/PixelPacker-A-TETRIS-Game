@@ -66,21 +66,6 @@ function getRandomTetromino() {
   };
 }
 
-// function placeTetromino() {
-//   for (let y = 0; y < currentTetromino.shape.length; y++) {
-//     for (let x = 0; x < currentTetromino.shape[y].length; x++) {
-//       if (currentTetromino.shape[y][x]) {
-//         gameBoard[y + currentTetromino.posY][x + currentTetromino.posX] =
-//           currentTetromino.color;
-//       }
-//     }
-//   }
-//   clearLines();
-//   if (checkGameOver()) {
-//     console.log("Game Over");
-//     clearInterval(gameInterval);
-//   }
-// }
 function checkGameOver() {
   for (let x = 0; x < gameBoard[0].length; x++) {
     if (gameBoard[0][x] !== 0) {
@@ -270,6 +255,10 @@ function levelUp() {
   setTimeout(() => {
     levelElement.classList.remove("level-number-yellow");
   }, 5000);
+
+  if (level > 10) {
+    level = 10;
+  }
 }
 
 function flashAndRemoveRow(rowIndex) {
