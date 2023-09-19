@@ -62,7 +62,7 @@ function getRandomTetromino() {
     posX:
       Math.floor(gameBoard[0].length / 2) -
       Math.ceil(randomTetromino.shape[0].length / 2),
-    posY: 0,
+    posY: 0
   };
 }
 
@@ -160,8 +160,7 @@ function clearLines() {
 
   linesCleared += rowsToRemove.length;
 
-  // Changed the level up condition to check for every 5 lines cleared
-  if (linesCleared >= level * 5) {
+  if (linesCleared >= level) {
     levelUp();
   }
 
@@ -185,34 +184,29 @@ function clearLines() {
     render();
   }, 400);
 }
-
 function levelUp() {
-  const previousLevel = level;
+  console.log("levelUp called");
   level++;
 
-  console.log(`Level has moved from ${previousLevel} to ${level}.`);
+  let levelElement = document.getElementById("level");
+  levelElement.innerHTML = `Level: ${level}`;
 
-  const levelElement = document.getElementById("level");
-  if (levelElement) {
-    levelElement.innerText = `Level: ${level}`;
-  }
+  let streakElement = document.querySelector(".streak");
+  console.log(streakElement);
+  streakElement.classList.add("active");
 
-  let newSpeed = 800 - (level - 1) * 50;
-  if (level > 5) {
-    newSpeed = 300;
-  }
+  streakElement.addEventListener(
+    "animationend",
+    function () {
+      streakElement.classList.remove("active");
+    },
+    { once: true }
+  );
 
-  clearInterval(gameInterval);
-  startGameLoop(newSpeed);
-}
-
-function startGameLoop(speed = 800) {
-  console.log("startGameLoop function called");
-  gameInterval = setInterval(function () {
-    if (!isPaused) {
-      updateGame();
-    }
-  }, speed);
+  levelElement.classList.add("level-number-yellow");
+  setTimeout(() => {
+    levelElement.classList.remove("level-number-yellow");
+  }, 5000);
 }
 
 function flashAndRemoveRow(rowIndex) {

@@ -233,3 +233,37 @@ body {
   background-image: linear-gradient(to bottom, #666, #222);
   box-shadow: 0px 4px 0px #111;
 }
+@keyframes streakAcross {
+  from {
+    left: -100%;
+  }
+  to {
+    left: 100%;
+  }
+}
+
+.streak {
+  position: absolute;
+  top: 20%;
+  left: 0;
+  height: 12%;
+  width: 100%;
+  background: linear-gradient(to right, transparent, yellow, transparent);
+  pointer-events: none;
+  animation: none;
+  opacity: 0;
+}
+
+.level-number-yellow {
+  color: yellow;
+  transition: color 5s;
+}
+
+.level-display #level {
+  background-color: transparent;
+}
+
+.streak.active {
+  opacity: 1;
+  animation: streakAcross 2s forwards;
+}
