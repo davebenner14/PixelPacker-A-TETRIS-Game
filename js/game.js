@@ -97,17 +97,6 @@ function hasCollision() {
   }
   return collision;
 }
-// function moveDown() {
-//   console.log("moveDown function called");
-//   currentTetromino.posY++;
-//   if (hasCollision()) {
-//     console.log("Collision occurred on moveDown");
-//     currentTetromino.posY--;
-//     placeTetromino();
-//     currentTetromino = getRandomTetromino(); // Set the new tetromino here
-//   }
-//   console.log("Current Tetromino Y position:", currentTetromino.posY);
-// }
 
 function moveRight() {
   currentTetromino.posX++;
@@ -124,7 +113,7 @@ function moveLeft() {
 }
 
 function rotateTetromino() {
-  console.log("rotateTetromino function called"); // add this line
+  console.log("rotateTetromino function called");
 
   const originalShape = [...currentTetromino.shape];
   const originalPosX = currentTetromino.posX;
@@ -167,12 +156,25 @@ function clearLines() {
     }
   }
 
-  for (let i = 0; i < rowsToRemove.length; i++) {
-    flashAndRemoveRow(rowsToRemove[i]);
-    for (let j = i + 1; j < rowsToRemove.length; j++) {
-      rowsToRemove[j]--;
+  rowsToRemove.forEach((rowIndex) => {
+    for (let x = 0; x < gameBoard[rowIndex].length; x++) {
+      gameBoard[rowIndex][x] = "WHITE";
     }
-  }
+  });
+
+  render();
+
+  setTimeout(function () {
+    for (let i = rowsToRemove.length - 1; i >= 0; i--) {
+      gameBoard.splice(rowsToRemove[i], 1);
+    }
+
+    for (let i = 0; i < rowsToRemove.length; i++) {
+      gameBoard.unshift(new Array(gameBoard[0].length).fill(0));
+    }
+
+    render();
+  }, 400);
 }
 
 function flashAndRemoveRow(rowIndex) {
