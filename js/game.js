@@ -146,6 +146,8 @@ function placeTetromino() {
     clearInterval(gameInterval);
   }
 }
+let linesCleared = 0;
+let level = 1;
 
 function clearLines() {
   let rowsToRemove = [];
@@ -154,6 +156,13 @@ function clearLines() {
     if (gameBoard[y].every((cell) => cell !== 0)) {
       rowsToRemove.push(y);
     }
+  }
+
+  linesCleared += rowsToRemove.length;
+
+  // Changed the level up condition to check for every 5 lines cleared
+  if (linesCleared >= level * 5) {
+    levelUp();
   }
 
   rowsToRemove.forEach((rowIndex) => {
@@ -175,6 +184,35 @@ function clearLines() {
 
     render();
   }, 400);
+}
+
+function levelUp() {
+  const previousLevel = level;
+  level++;
+
+  console.log(`Level has moved from ${previousLevel} to ${level}.`);
+
+  const levelElement = document.getElementById("level");
+  if (levelElement) {
+    levelElement.innerText = `Level: ${level}`;
+  }
+
+  let newSpeed = 800 - (level - 1) * 50;
+  if (level > 5) {
+    newSpeed = 300;
+  }
+
+  clearInterval(gameInterval);
+  startGameLoop(newSpeed);
+}
+
+function startGameLoop(speed = 800) {
+  console.log("startGameLoop function called");
+  gameInterval = setInterval(function () {
+    if (!isPaused) {
+      updateGame();
+    }
+  }, speed);
 }
 
 function flashAndRemoveRow(rowIndex) {
