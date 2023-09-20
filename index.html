@@ -17,17 +17,24 @@
       <div class="left-section">
         <!-- Game Information Display -->
         <div class="info-buttons-container">
-          <div class="level-display">
-            <div id="level" style="min-width: 150px">Level: 1</div>
+          <div class="info-wrapper">
+            <div class="level-display">
+              <div id="level" style="min-width: 150px">Level: 1</div>
+            </div>
+            <div class="score-display">
+              <span>Score:</span>
+              <span id="score">0</span>
+            </div>
+            <div class="game-buttons">
+              <button class="startPauseButtons" id="startGame">
+                Start Game
+              </button>
+              <button class="startPauseButtons" id="pausePlay">Pause</button>
+            </div>
           </div>
-          <div class="score-display">
-            <span>Score:</span>
-            <span id="score">0</span>
-          </div>
-
-          <div class="game-buttons">
-            <button class="startPauseButtons" id="startGame">Start Game</button>
-            <button class="startPauseButtons" id="pausePlay">Pause</button>
+          <div class="next-piece">
+            <h4>Next Piece:</h4>
+            <div id="nextPiecePreview"></div>
           </div>
         </div>
         <div class="keyboard-controls">
@@ -39,17 +46,11 @@
           <button class="key flip" data-key="Z">Flip</button>
         </div>
       </div>
-
       <!-- Game Board -->
       <div class="gameBoard-container">
         <div id="gameBoard"></div>
       </div>
-
       <div class="right-section">
-        <div class="next-piece">
-          <h4>Next Piece:</h4>
-          <div id="nextPiecePreview"></div>
-        </div>
         <div class="controls">
           <h4>Controls:</h4>
           <ul>
@@ -67,10 +68,8 @@
           </ul>
         </div>
       </div>
-
       <div class="streak"></div>
     </div>
-
     <script src="js/main.js"></script>
     <script src="js/utils.js"></script>
     <script src="js/tetrominoes.js"></script>
