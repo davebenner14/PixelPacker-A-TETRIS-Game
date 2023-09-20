@@ -129,6 +129,10 @@ button {
     align-items: center;
     justify-content: flex-start;
   }
+  .rules,
+  .controls {
+    display: none;
+  }
 
   .info-section,
   .left-section,
