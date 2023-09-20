@@ -131,15 +131,14 @@ button {
   }
   .keyboard-controls {
     margin-top: 0px;
-    order: 3;
   }
   .rules,
-  .controls {
+  .controls,
+  .keyboard-controls {
     display: none;
   }
 
-  .info-section,
-  .left-section,
+  .keyboard-controls .left-section,
   .right-section {
     margin: 20px 0;
     width: 100%;
@@ -183,11 +182,4 @@ button {
     font-size: 24px;
     margin: 20px 0;
   }
-}
-.next-piece {
-  order: 1;
-}
-
-.gameBoard-container {
-  order: 2;
 }

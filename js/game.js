@@ -284,6 +284,41 @@ function pauseGame() {
   }
 }
 
+boardElement.addEventListener("click", handleBoardClick);
+
+function handleBoardClick(event) {
+  const rect = boardElement.getBoundingClientRect();
+  const clickX = event.clientX - rect.left;
+  const clickY = event.clientY - rect.top;
+  const cellWidth = boardElement.offsetWidth / 10;
+
+  const tetrominoLeft = currentTetromino.posX * cellWidth;
+  const tetrominoRight =
+    (currentTetromino.posX + currentTetromino.shape[0].length) * cellWidth;
+  const tetrominoTop = currentTetromino.posY * cellWidth;
+  const tetrominoBottom =
+    (currentTetromino.posY + currentTetromino.shape.length) * cellWidth;
+
+  if (
+    clickX >= tetrominoLeft &&
+    clickX <= tetrominoRight &&
+    clickY >= tetrominoTop &&
+    clickY <= tetrominoBottom
+  ) {
+    rotateTetromino();
+  } else {
+    const blockCenterX = tetrominoLeft + (tetrominoRight - tetrominoLeft) / 2;
+
+    if (clickX < blockCenterX) {
+      moveLeft();
+    } else {
+      moveRight();
+    }
+  }
+
+  render();
+}
+
 function updateNextPiecePreview() {
   let previewElement = document.getElementById("nextPiecePreview");
   previewElement.innerHTML = "";
@@ -301,7 +336,6 @@ function updateNextPiecePreview() {
     previewElement.appendChild(rowElement);
   }
 }
-
 function updateGame() {
   console.log("updateGame function called");
   moveDown();
