@@ -122,16 +122,17 @@ button {
 .cell.ghost.orange {
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2), inset 0 0 0 2px orange;
 }
-
 @media (max-width: 600px) {
   .game-container {
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
   }
+
   .keyboard-controls {
     margin-top: 0px;
   }
+
   .rules,
   .controls,
   .keyboard-controls {
@@ -170,16 +171,41 @@ button {
     padding: 6px 10px;
   }
 
+  .info-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f4f4f4;
+    padding: 10px;
+    width: 80%;
+    margin: 10px auto;
+    border-radius: 10px;
+  }
+
   .score-display,
   .level-display,
-  .next-piece,
-  .controls {
-    font-size: 14px;
-    margin: 10px 0;
+  .next-piece {
+    font-size: 10px;
+    margin: 0 10px;
+    flex: 1;
+    text-align: center;
+  }
+  .startPauseButtons {
+    font-size: 10px;
   }
 
   .game-title {
-    font-size: 24px;
-    margin: 20px 0;
+    order: 1;
+  }
+
+  .info-container {
+    order: 2;
+  }
+
+  .gameBoard-container {
+    order: 3;
+  }
+  .next-piece {
+    width: 30%;
   }
 }
