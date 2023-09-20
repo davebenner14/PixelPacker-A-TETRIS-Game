@@ -244,9 +244,9 @@ body {
 
 .streak {
   position: absolute;
-  top: 20%;
+  top: 0%;
   left: 0;
-  height: 12%;
+  height: 40%;
   width: 100%;
   background: linear-gradient(to right, transparent, yellow, transparent);
   pointer-events: none;
