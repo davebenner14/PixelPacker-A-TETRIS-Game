@@ -143,6 +143,11 @@ button {
     text-align: center;
     align-items: center;
   }
+  .game-title {
+    font-size: 12px;
+    margin-top: 10px;
+    margin-bottom: -10px;
+  }
 
   .info-buttons-container {
     display: flex;
