@@ -129,6 +129,10 @@ button {
     align-items: center;
     justify-content: flex-start;
   }
+  .keyboard-controls {
+    margin-top: 0px;
+    order: 3;
+  }
   .rules,
   .controls {
     display: none;
@@ -179,4 +183,11 @@ button {
     font-size: 24px;
     margin: 20px 0;
   }
+}
+.next-piece {
+  order: 1;
+}
+
+.gameBoard-container {
+  order: 2;
 }
