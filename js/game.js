@@ -283,6 +283,9 @@ function pauseGame() {
     isPaused = true;
   }
 }
+function dropTetrominoFast() {
+  currentTetromino.posY = getGhostPiecePosition();
+}
 
 boardElement.addEventListener("click", handleBoardClick);
 
@@ -299,6 +302,10 @@ function handleBoardClick(event) {
   const tetrominoBottom =
     (currentTetromino.posY + currentTetromino.shape.length) * cellWidth;
 
+  const ghostPosY = getGhostPiecePosition();
+  const ghostTop = ghostPosY * cellWidth;
+  const ghostBottom = (ghostPosY + currentTetromino.shape.length) * cellWidth;
+
   if (
     clickX >= tetrominoLeft &&
     clickX <= tetrominoRight &&
@@ -306,6 +313,13 @@ function handleBoardClick(event) {
     clickY <= tetrominoBottom
   ) {
     rotateTetromino();
+  } else if (
+    clickX >= tetrominoLeft &&
+    clickX <= tetrominoRight &&
+    clickY >= ghostTop &&
+    clickY <= ghostBottom
+  ) {
+    dropTetrominoFast();
   } else {
     const blockCenterX = tetrominoLeft + (tetrominoRight - tetrominoLeft) / 2;
 
@@ -317,6 +331,18 @@ function handleBoardClick(event) {
   }
 
   render();
+}
+
+function dropTetrominoFast() {
+  const dropInterval = setInterval(() => {
+    currentTetromino.posY++;
+    if (hasCollision()) {
+      currentTetromino.posY--;
+      placeTetromino();
+      clearInterval(dropInterval);
+    }
+    render();
+  }, 50);
 }
 
 function updateNextPiecePreview() {
