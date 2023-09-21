@@ -154,6 +154,7 @@ button {
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    gap: 10px;
   }
 
   .info-wrapper {
@@ -162,6 +163,7 @@ button {
     flex: 1;
     align-items: center;
     text-align: center;
+    width: 50%;
   }
 
   .gameBoard-container,
@@ -186,7 +188,7 @@ button {
     flex: 1;
     font-size: 10px;
     text-align: center;
-    width: 20%;
+    width: 50%;
   }
   .level-display,
   .score-display {
@@ -195,8 +197,6 @@ button {
   }
 
   .game-buttons button {
-    margin: 2px;
-    font-size: 10px;
     padding: 2px 5px;
   }
 
@@ -205,5 +205,19 @@ button {
   }
   .game-buttons {
     margin-top: 5px;
+  }
+  body {
+    background-size: 150% 180%;
+  }
+  .info-wrapper,
+  .next-piece {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 200px; /* explicit width */
+    height: 125px; /* explicit height */
+    flex: 1;
+    text-align: center;
   }
 }
