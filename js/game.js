@@ -8,28 +8,40 @@ let nextTetromino = getRandomTetromino();
 displayNextTetromino(nextTetromino);
 
 function moveDown() {
+  console.log("Before moveDown");
+  console.log("currentTetromino: ", JSON.stringify(currentTetromino));
+  console.log("nextTetromino: ", JSON.stringify(nextTetromino));
+
   console.log("moveDown function called");
   currentTetromino.posY++;
+
   if (hasCollision()) {
     console.log("Collision occurred on moveDown");
     currentTetromino.posY--;
     placeTetromino();
 
-    currentTetromino = nextTetromino;
+    currentTetromino = JSON.parse(JSON.stringify(nextTetromino)); // Deep clone
 
     nextTetromino = getRandomTetromino();
     displayNextTetromino(nextTetromino);
 
-    if (hasCollision()) {
-      console.log("Game Over");
-      clearInterval(gameInterval);
-    }
+    // if (hasCollision()) {
+    //   console.log("Game Over");
+    //   clearInterval(gameInterval);
+    // }
   }
+
   console.log("Current Tetromino Y position:", currentTetromino.posY);
+
+  console.log("After moveDown");
+  console.log("new currentTetromino: ", JSON.stringify(currentTetromino));
+  console.log("new nextTetromino: ", JSON.stringify(nextTetromino));
 }
 
 function displayNextTetromino(tetromino) {
   const nextPieceContainer = document.getElementById("nextPiecePreview");
+
+  // Calculate the offset to center the tetromino in the 4x4 grid
   const offsetX = 2 - Math.ceil(tetromino.shape[0].length / 2);
   const offsetY = 2 - Math.ceil(tetromino.shape.length / 2);
 
@@ -40,16 +52,22 @@ function displayNextTetromino(tetromino) {
     for (let x = 0; x < 4; x++) {
       const cell = document.createElement("div");
       cell.classList.add("cell");
+
+      // Use the offsets to position the tetromino correctly in the grid
       if (
         tetromino.shape[y - offsetY] &&
         tetromino.shape[y - offsetY][x - offsetX]
       ) {
         cell.classList.add(tetromino.color);
       }
+
       row.appendChild(cell);
     }
     nextPieceContainer.appendChild(row);
   }
+}
+function deepCloneArray(arr) {
+  return JSON.parse(JSON.stringify(arr));
 }
 
 function getRandomTetromino() {
@@ -57,23 +75,25 @@ function getRandomTetromino() {
   const randomTetromino =
     TETROMINOES[tetrominoes[Math.floor(Math.random() * tetrominoes.length)]];
 
+  const newShape = deepCloneArray(randomTetromino.shape);
+
   return {
-    ...randomTetromino,
+    shape: newShape,
+    color: randomTetromino.color,
     posX:
-      Math.floor(gameBoard[0].length / 2) -
-      Math.ceil(randomTetromino.shape[0].length / 2),
+      Math.floor(gameBoard[0].length / 2) - Math.ceil(newShape[0].length / 2),
     posY: 0
   };
 }
 
-function checkGameOver() {
-  for (let x = 0; x < gameBoard[0].length; x++) {
-    if (gameBoard[0][x] !== 0) {
-      return true;
-    }
-  }
-  return false;
-}
+// function checkGameOver() {
+//   for (let x = 0; x < gameBoard[0].length; x++) {
+//     if (gameBoard[0][x] !== 0) {
+//       return true;
+//     }
+//   }
+//   return false;
+// }
 
 function hasCollision() {
   const collision = checkCollision(currentTetromino, gameBoard);
@@ -124,12 +144,11 @@ function placeTetromino() {
       }
     }
   }
-  clearLines();
-  currentTetromino = getRandomTetromino();
-  if (hasCollision()) {
-    console.log("Game Over");
-    clearInterval(gameInterval);
-  }
+  // clearLines();
+  // if (hasCollision()) {
+  //   console.log("Game Over");
+  //   clearInterval(gameInterval);
+  // }
 }
 
 let linesCleared = 0;
