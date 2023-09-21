@@ -25,10 +25,10 @@ function moveDown() {
     nextTetromino = getRandomTetromino();
     displayNextTetromino(nextTetromino);
 
-    // if (hasCollision()) {
-    //   console.log("Game Over");
-    //   clearInterval(gameInterval);
-    // }
+    if (hasCollision()) {
+      console.log("Game Over");
+      clearInterval(gameInterval);
+    }
   }
 
   console.log("Current Tetromino Y position:", currentTetromino.posY);
@@ -138,16 +138,36 @@ function placeTetromino() {
   for (let y = 0; y < currentTetromino.shape.length; y++) {
     for (let x = 0; x < currentTetromino.shape[y].length; x++) {
       if (currentTetromino.shape[y][x]) {
+        if (y + currentTetromino.posY < 0) {
+          // This block is outside the game board!
+          console.log("Game Over");
+          clearInterval(gameInterval);
+          return;
+        }
         gameBoard[y + currentTetromino.posY][x + currentTetromino.posX] =
           currentTetromino.color;
       }
     }
   }
-  // clearLines();
-  // if (hasCollision()) {
-  //   console.log("Game Over");
-  //   clearInterval(gameInterval);
-  // }
+
+  // Clear lines and shift rows first
+  clearLines();
+
+  // If blocks have reached the top row, it's game over.
+  if (gameBoard[0].some((cell) => cell !== 0)) {
+    console.log("Game Over");
+    clearInterval(gameInterval);
+  }
+}
+
+// This function checks the top row for any blocks. If found, triggers game over.
+function checkGameOver() {
+  for (let x = 0; x < gameBoard[0].length; x++) {
+    if (gameBoard[0][x] !== 0) {
+      return true;
+    }
+  }
+  return false;
 }
 
 let linesCleared = 0;
@@ -402,6 +422,7 @@ function updateNextPiecePreview() {
     previewElement.appendChild(rowElement);
   }
 }
+
 function updateGame() {
   console.log("updateGame function called");
   moveDown();
