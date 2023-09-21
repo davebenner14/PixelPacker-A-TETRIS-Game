@@ -5,41 +5,35 @@ let gameStarted = false;
 document.addEventListener("DOMContentLoaded", function () {
   console.log("PixelPacker is initialized!");
 
-  boardElement = document.getElementById("gameBoard");
-
-  // Initialize the game
   initGame();
 
-  // Initialize controls
   initializeControls();
 
-  // Prevent spacebar default behavior when the startGame button is in focus
-  document
-    .getElementById("startGame")
-    .addEventListener("keydown", function (event) {
-      if (event.key === "Space") {
-        event.preventDefault();
-      }
-    });
-
-  // Add back the click event listener for the startGame function
-  document.getElementById("startGame").addEventListener("click", startGame);
-
   document.getElementById("pausePlay").addEventListener("click", togglePause);
+
+  document.addEventListener("click", function () {
+    if (!gameStarted) {
+      startGame();
+    }
+  });
 });
 
 function initGame() {
   isPaused = true;
+  gameStarted = false;
+  const startMessageElement = document.getElementById("startMessage");
+  startMessageElement.style.display = "flex";
+  startMessageElement.className = "start-overlay";
 }
 
 function startGame() {
   console.log("startGame function called");
-
   if (!gameStarted) {
     isPaused = false;
     startGameLoop();
     gameStarted = true;
     document.getElementById("pausePlay").innerText = "Pause";
+    document.getElementById("startMessage").style.display = "none"; // Hide the message
   }
 }
 

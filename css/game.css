@@ -215,8 +215,8 @@ button {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 200px; /* explicit width */
-    height: 125px; /* explicit height */
+    width: 200px;
+    height: 125px;
     flex: 1;
     text-align: center;
   }

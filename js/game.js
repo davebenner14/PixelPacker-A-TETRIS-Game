@@ -333,6 +333,26 @@ function handleBoardClick(event) {
   render();
 }
 
+document.getElementById("restartGame").addEventListener("click", restartGame);
+
+function restartGame() {
+  for (let row of gameBoard) {
+    row.fill(0);
+  }
+
+  currentTetromino = getRandomTetromino();
+  nextTetromino = getRandomTetromino();
+  displayNextTetromino(nextTetromino);
+  score = 0;
+  level = 1;
+
+  document.getElementById("score").innerText = score;
+  document.getElementById("level").innerText = `Level: ${level}`;
+
+  clearInterval(gameInterval);
+  gameInterval = setInterval(updateGame, 1000);
+}
+
 function dropTetrominoFast() {
   const dropInterval = setInterval(() => {
     currentTetromino.posY++;
