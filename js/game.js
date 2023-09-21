@@ -350,7 +350,9 @@ function restartGame() {
   document.getElementById("level").innerText = `Level: ${level}`;
 
   clearInterval(gameInterval);
-  gameInterval = setInterval(updateGame, 1000);
+
+  const gameRestartedEvent = new Event("gameRestarted");
+  document.dispatchEvent(gameRestartedEvent);
 }
 
 function dropTetrominoFast() {

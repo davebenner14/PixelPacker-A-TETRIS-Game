@@ -16,6 +16,10 @@ document.addEventListener("DOMContentLoaded", function () {
       startGame();
     }
   });
+
+  document.addEventListener("gameRestarted", function () {
+    initGame();
+  });
 });
 
 function initGame() {
