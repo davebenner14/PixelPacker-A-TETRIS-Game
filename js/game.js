@@ -139,6 +139,8 @@ function placeTetromino() {
         if (y + currentTetromino.posY < 0) {
           console.log("Game Over");
           clearInterval(gameInterval);
+          bgMusic.pause();
+          gameOverSound.play();
           return;
         }
         gameBoard[y + currentTetromino.posY][x + currentTetromino.posX] =
@@ -150,8 +152,10 @@ function placeTetromino() {
   clearLines();
 
   if (gameBoard[0].some((cell) => cell !== 0)) {
-    console.log("Game Over");
+    console.log("Game Over Over");
     clearInterval(gameInterval);
+    bgMusic.pause();
+    gameOverSound.play();
   }
 }
 
@@ -445,28 +449,28 @@ function updateGame() {
   render();
 }
 
-let bgMusicStarted = false;
-let clickSoundPlayed = false;
+let bgMusic;
+let gameStartSound;
+let gameOverSound;
+let audioStarted = false;
+let firstClickDone = false;
 
 document.addEventListener("DOMContentLoaded", function () {
-  let bgMusic = document.getElementById("bgMusic");
-  let clickSound = document.getElementById("clickSound");
+  bgMusic = document.getElementById("bgMusic");
+  gameStartSound = document.getElementById("gameStartSound");
+  gameOverSound = document.getElementById("gameOverSound");
 
   document.addEventListener("click", function () {
-    if (!bgMusicStarted) {
+    if (!audioStarted) {
       bgMusic.play();
-      bgMusicStarted = true;
+      audioStarted = true;
     }
 
-    if (!clickSoundPlayed) {
-      clickSound.play();
-      clickSoundPlayed = true;
+    if (!firstClickDone) {
+      gameStartSound.play();
+      firstClickDone = true;
     }
   });
-
-  document
-    .getElementById("restartGame")
-    .addEventListener("click", function () {});
 });
 
 function render() {
