@@ -20,14 +20,12 @@ function moveDown() {
     currentTetromino.posY--;
     placeTetromino();
 
-    currentTetromino = JSON.parse(JSON.stringify(nextTetromino)); // Deep clone
-
+    currentTetromino = JSON.parse(JSON.stringify(nextTetromino));
     nextTetromino = getRandomTetromino();
     displayNextTetromino(nextTetromino);
 
-    if (hasCollision()) {
-      console.log("Game Over");
-      clearInterval(gameInterval);
+    if (checkGameOver()) {
+      return;
     }
   }
 
@@ -139,7 +137,6 @@ function placeTetromino() {
     for (let x = 0; x < currentTetromino.shape[y].length; x++) {
       if (currentTetromino.shape[y][x]) {
         if (y + currentTetromino.posY < 0) {
-          // This block is outside the game board!
           console.log("Game Over");
           clearInterval(gameInterval);
           return;
@@ -150,24 +147,28 @@ function placeTetromino() {
     }
   }
 
-  // Clear lines and shift rows first
   clearLines();
 
-  // If blocks have reached the top row, it's game over.
   if (gameBoard[0].some((cell) => cell !== 0)) {
     console.log("Game Over");
     clearInterval(gameInterval);
   }
 }
 
-// This function checks the top row for any blocks. If found, triggers game over.
 function checkGameOver() {
   for (let x = 0; x < gameBoard[0].length; x++) {
     if (gameBoard[0][x] !== 0) {
+      triggerGameOver();
       return true;
     }
   }
   return false;
+}
+
+function triggerGameOver() {
+  console.log("Unified Game Over");
+  clearInterval(gameInterval);
+  document.getElementById("gameOverMessage").style.display = "flex";
 }
 
 let linesCleared = 0;
@@ -321,9 +322,9 @@ function pauseGame() {
     isPaused = true;
   }
 }
-function dropTetrominoFast() {
-  currentTetromino.posY = getGhostPiecePosition();
-}
+// function dropTetrominoFast() {
+//   currentTetromino.posY = getGhostPiecePosition();
+// }
 
 boardElement.addEventListener("click", handleBoardClick);
 
@@ -393,16 +394,25 @@ function restartGame() {
   document.dispatchEvent(gameRestartedEvent);
 }
 
+let lastDropFastTime = 0;
+
 function dropTetrominoFast() {
-  const dropInterval = setInterval(() => {
-    currentTetromino.posY++;
-    if (hasCollision()) {
-      currentTetromino.posY--;
-      placeTetromino();
-      clearInterval(dropInterval);
-    }
-    render();
-  }, 50);
+  const currentTime = new Date().getTime();
+
+  if (currentTime - lastDropFastTime >= 2000) {
+    lastDropFastTime = currentTime;
+
+    const dropInterval = setInterval(() => {
+      currentTetromino.posY++;
+      if (hasCollision()) {
+        currentTetromino.posY--;
+        placeTetromino();
+        clearInterval(dropInterval);
+        updateGame();
+      }
+      render();
+    }, 50);
+  }
 }
 
 function updateNextPiecePreview() {
