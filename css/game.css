@@ -228,7 +228,7 @@ button {
     align-items: center;
     justify-content: center;
     width: 200px;
-    height: 125px;
+    /* height: 125px; */
     flex: 1;
     text-align: center;
   }

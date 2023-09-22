@@ -445,15 +445,22 @@ function updateGame() {
   render();
 }
 
-let audioStarted = false;
+let bgMusicStarted = false;
+let clickSoundPlayed = false;
 
 document.addEventListener("DOMContentLoaded", function () {
-  let audioElement = document.getElementById("bgMusic");
+  let bgMusic = document.getElementById("bgMusic");
+  let clickSound = document.getElementById("clickSound");
 
   document.addEventListener("click", function () {
-    if (!audioStarted) {
-      audioElement.play();
-      audioStarted = true;
+    if (!bgMusicStarted) {
+      bgMusic.play();
+      bgMusicStarted = true;
+    }
+
+    if (!clickSoundPlayed) {
+      clickSound.play();
+      clickSoundPlayed = true;
     }
   });
 
