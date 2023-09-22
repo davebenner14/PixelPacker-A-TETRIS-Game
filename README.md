@@ -30,5 +30,5 @@ PixelPacker is written entirely in vanilla JavaScript, alongside HTML and CSS fo
 
 ## Screenshots 📸
 
-![Screenshot 1](Screenshots/Screenshot1.png)
-![Screenshot 2 - Mobile Version](Screenshots/Screenshot2.png)
+![Screenshot 1](assets/Screenshot1.png)
+![Screenshot 2 - Mobile Version](assets/Screenshot2.png)
