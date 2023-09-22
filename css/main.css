@@ -407,7 +407,6 @@ body {
     font-size: 30px;
   }
 }
-
 .game-over-overlay {
   position: fixed;
   top: 0;
@@ -418,15 +417,40 @@ body {
   color: rgb(21, 0, 255);
   text-shadow: 3px 5px 0 rgb(155, 30, 157);
   box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   font-family: "Press Start 2P", cursive;
   font-size: 40px;
   z-index: 999;
   text-align: center;
   white-space: nowrap;
+}
+
+#gameOverText {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: bounce 4s ease-in-out forwards;
+  top: 0%;
+}
+
+@keyframes bounce {
+  0% {
+    top: 0%;
+  }
+  30% {
+    top: 50%;
+  }
+  50% {
+    top: 40%;
+  }
+  70% {
+    top: 50%;
+  }
+  85% {
+    top: 45%;
+  }
+  100% {
+    top: 50%;
+  }
 }
 
 @media only screen and (max-width: 768px) {
