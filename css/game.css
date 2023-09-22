@@ -40,9 +40,9 @@
   align-content: flex-start;
 }
 
-.game-buttons {
+/* .game-buttons {
   margin-top: 1.5em;
-}
+} */
 
 button {
   padding: 0.5em 1em;
@@ -204,7 +204,19 @@ button {
     font-size: 12px;
   }
   .game-buttons {
-    margin-top: 5px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    font-size: 4vw;
+    width: 100%;
+  }
+
+  .game-buttons button {
+    min-height: 10vh;
+    max-height: auto;
+    border: 1px solid black;
+  }
+  .startPauseButtons {
+    font-size: 10px;
   }
   body {
     background-size: 150% 180%;
