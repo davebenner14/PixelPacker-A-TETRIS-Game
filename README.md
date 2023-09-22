@@ -1,6 +1,4 @@
-# 🎮 PixelPacker - a TETЯIS Game 🎮
-
-![PixelPacker Title](assets/tetris.png)
+# ![PixelPacker Title](assets/tetris.png) PixelPacker - a TETЯIS Game ![PixelPacker Title](assets/tetris.png)
 
 PixelPacker is a captivating web-based rendition of the classic TETЯIS game we all know and love. Featuring vivid pixel graphics and engaging audio, this version invites you to dive into a world where you stack, pack, and clear lines of pixels to reach a high score.
 
