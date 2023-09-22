@@ -444,6 +444,24 @@ function updateGame() {
   moveDown();
   render();
 }
+
+let audioStarted = false;
+
+document.addEventListener("DOMContentLoaded", function () {
+  let audioElement = document.getElementById("bgMusic");
+
+  document.addEventListener("click", function () {
+    if (!audioStarted) {
+      audioElement.play();
+      audioStarted = true;
+    }
+  });
+
+  document
+    .getElementById("restartGame")
+    .addEventListener("click", function () {});
+});
+
 function render() {
   boardElement.innerHTML = "";
 
