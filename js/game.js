@@ -189,6 +189,12 @@ function clearLines() {
   const rowsToRemove = getRowsToRemove();
 
   if (rowsToRemove.length > 0) {
+    let clearLineSound = document.getElementById("clearLineSound");
+    let goalSound = document.getElementById("goalSound");
+
+    clearLineSound.play();
+    goalSound.play();
+
     updateLinesScoreAndLevel(rowsToRemove.length);
     clearAndRenderRows(rowsToRemove);
     shiftRowsAfterDelay(rowsToRemove);
