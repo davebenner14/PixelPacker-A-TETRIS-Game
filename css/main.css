@@ -407,6 +407,12 @@ body {
     font-size: 30px;
   }
 }
+.game-over-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 .game-over-overlay {
   position: fixed;
   top: 0;
@@ -452,9 +458,39 @@ body {
     top: 50%;
   }
 }
+.try-again-text {
+  font-family: "Press Start 2P", cursive;
+  font-size: 20px;
+  color: rgb(0, 255, 21);
+  text-shadow: 2px 3px 0 rgb(255, 155, 0);
+  text-decoration: none;
+  cursor: pointer;
+  margin-top: 10px;
+  border: 2px solid rgb(0, 255, 21);
+  padding: 5px;
+  animation: flash 2s infinite;
+}
+
+.try-again-text:hover {
+  text-decoration: underline;
+  color: rgb(255, 255, 255);
+}
+
+@keyframes flash {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
 
 @media only screen and (max-width: 768px) {
   .game-over-overlay {
     font-size: 30px;
+  }
+  .try-again-text {
+    font-size: 20px;
   }
 }

@@ -81,10 +81,20 @@
     </div>
 
     <div id="gameOverMessage" class="game-over-overlay" style="display: none">
-      <span id="gameOverText" class="game-over-message">
-        <span class="game-over-message-line">Game</span><br />
-        <span class="game-over-message-line">Over</span>
-      </span>
+      <div id="gameOverContainer" class="game-over-container">
+        <span id="gameOverText" class="game-over-message">
+          <span class="game-over-message-line">Game</span><br />
+          <span class="game-over-message-line">Over</span>
+          <a
+          id="tryAgainButton"
+          href="#"
+          style="display: none"
+          class="try-again-text"
+          >Try Again?</a
+        >
+      </div>
+        </span>
+  
     </div>
 
     <script src="js/main.js"></script>

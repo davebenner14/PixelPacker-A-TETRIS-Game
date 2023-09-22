@@ -169,6 +169,12 @@ function triggerGameOver() {
   console.log("Unified Game Over");
   clearInterval(gameInterval);
   document.getElementById("gameOverMessage").style.display = "flex";
+
+  setTimeout(() => {
+    const tryAgainButton = document.getElementById("tryAgainButton");
+    tryAgainButton.style.display = "block";
+    tryAgainButton.setAttribute("href", window.location.href);
+  }, 5000);
 }
 
 let linesCleared = 0;
