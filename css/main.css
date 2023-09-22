@@ -22,25 +22,161 @@ body {
 }
 
 .game-title {
-  margin-top: 40px;
-  margin-bottom: 30px;
-  font-family: "Press Start 2P", cursive;
+  font-family: "Friz Quadrata", Times, serif;
   font-size: 32px;
-  background: linear-gradient(
-    45deg,
-    #ff4c4c,
-    #4c4cff,
-    #4cff4c,
-    #ffff4c,
-    #4cffff,
-    #b34cff,
-    #ff9933
-  );
-  -webkit-background-clip: text;
-  color: transparent;
-  text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.7), 5px 5px 10px rgba(0, 0, 0, 0.5);
-  letter-spacing: 2px;
+  text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.7), 4px 4px 0px rgba(0, 0, 0, 0.5);
   text-align: center;
+  color: white;
+  margin-top: 40px;
+  /* margin-bottom: 30px; */
+}
+
+.title-letter {
+  display: inline-block;
+  position: relative;
+  top: -100vh;
+  animation: fall 2s ease-in-out forwards;
+}
+
+.title-red {
+  color: red;
+  animation: fallT 4s ease-in-out forwards 1s;
+}
+
+.title-orange {
+  color: orange;
+  animation: fallE 4s ease-in-out forwards 2s;
+}
+
+.title-yellow {
+  color: yellow;
+  animation: fallT2 4s ease-in-out forwards 3s;
+}
+
+.title-green {
+  color: green;
+  animation: fallYa 4s ease-in-out forwards 4s;
+}
+
+.title-blue {
+  color: lightblue;
+  animation: fallI 4s ease-in-out forwards 5s;
+}
+
+.title-purple {
+  color: rgb(166, 27, 166);
+  animation: fallS 4s ease-in-out forwards 6s;
+}
+#title-P {
+  animation-delay: 0.5s;
+}
+#title-i {
+  animation-delay: 1.4s;
+}
+#title-x {
+  animation-delay: 0.8s;
+}
+#title-e {
+  animation-delay: 1.4s;
+}
+#title-l {
+  animation-delay: 2.2s;
+}
+#title-P2 {
+  animation-delay: 2.1s;
+}
+#title-a {
+  animation-delay: 2.8s;
+}
+#title-c {
+  animation-delay: 2.5s;
+}
+#title-k {
+  animation-delay: 2.8s;
+}
+#title-e2 {
+  animation-delay: 1.3s;
+}
+#title-r {
+  animation-delay: 3.4s;
+}
+#title-hypen {
+  animation-delay: 2.6s;
+}
+#title-A {
+  animation-delay: 4.1s;
+}
+#title-T {
+  animation-delay: 4.5s;
+}
+#title-E {
+  animation-delay: 4.8s;
+}
+#title-T2 {
+  animation-delay: 5s;
+}
+#title-Ya {
+  animation-delay: 5.3s;
+}
+#title-I {
+  animation-delay: 5.8s;
+}
+#title-S {
+  animation-delay: 6s;
+}
+#title-G {
+  animation-delay: 6.2s;
+}
+#title-a2 {
+  animation-delay: 6.4s;
+}
+#title-m {
+  animation-delay: 6.5s;
+}
+#title-e {
+  animation-delay: 4s;
+}
+
+@keyframes fall {
+  to {
+    top: 0;
+  }
+}
+
+@keyframes fallT {
+  to {
+    top: 0;
+  }
+}
+
+@keyframes fallE {
+  to {
+    top: 0;
+  }
+}
+
+@keyframes fallT2 {
+  to {
+    top: 0;
+  }
+}
+
+@keyframes fallYa {
+  to {
+    top: 0;
+  }
+}
+
+@keyframes fallI {
+  to {
+    top: 0;
+  }
+}
+
+@keyframes fallS {
+  to {
+    top: 0;
+  }
 }
 
 .game-container {
